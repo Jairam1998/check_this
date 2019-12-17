@@ -19,22 +19,25 @@ public class login extends AppCompatActivity implements PostResponseHandler {
 
     Button login;
     EditText username,pin;
+
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         login = (Button)findViewById(R.id.login);
         username = (EditText)findViewById(R.id.username);
         pin = (EditText)findViewById(R.id.pin);
+        /*
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 authenticate(username.toString(),pin.toString());
             }
-        });
+        });*/
     }
 
 
-    public void authenticate(String username, String pin) {
+    public void authenticate(View view) {
 
 
         /*
@@ -48,6 +51,7 @@ public class login extends AppCompatActivity implements PostResponseHandler {
 
             System.out.println("wrong credentials");
         }*/
+
 
         ProgressBar progressBar = findViewById(R.id.progressBar);
         PostRequest request = new PostRequest(this,progressBar,Constants.SERVICE_CHECK_LOGIN);
@@ -67,6 +71,8 @@ public class login extends AppCompatActivity implements PostResponseHandler {
 
         String message = "";
         Properties response = null;
+
+
 
         try {
             response = Utils.getJSONObject(new JSONObject(jsonResponse));
